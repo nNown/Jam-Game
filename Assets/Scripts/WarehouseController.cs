@@ -6,12 +6,13 @@ public class WarehouseController : MonoBehaviour
 {
     public GameObject itemObj;
     public Inventory inventory;
-    void Start()
-    {
-        
-    }
+    GameMaster gm;
+    private Vector2 moveVelocity;
 
-    
+    private void Start()
+    {
+        gm = GameMaster.GM;
+    }
     public void AddPaperToInventory()
     {
         IInventoryItem item = itemObj.gameObject.GetComponent<IInventoryItem>();
@@ -21,8 +22,18 @@ public class WarehouseController : MonoBehaviour
         }
     }
 
+
     public void RemoveItems()
     {
         inventory.RemoveItems();
+    }
+
+    public void RemoveLastItem()
+    {
+        inventory.RemoveItems();
+    }
+    public void ExitWarehouse()
+    {
+        gm.playerObject.transform.position = gm.playerObject.transform.position + Vector3.down * 0.2f;
     }
 }

@@ -16,3 +16,12 @@ public class InventoryEventArgs : EventArgs
     }
     public IInventoryItem Item;
 }
+
+public class LastItemWithTagRemovedEventArgs : EventArgs
+{
+    public LastItemWithTagRemovedEventArgs(string tag)
+    {
+        Tag = tag;
+    }
+    public string Tag;
+}
