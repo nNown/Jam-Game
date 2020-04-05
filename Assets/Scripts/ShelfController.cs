@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ShelfController : MonoBehaviour
 {
@@ -33,12 +34,26 @@ public class ShelfController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gm.nearShelf = gameObject;
+        if (collision.CompareTag("Player"))
+        {
+            gm.nearShelf = gameObject;
+        }
+        
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gm.nearShelf = gameObject;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        gm.nearShelf = null;
+        if (collision.CompareTag("Player"))
+        {
+            gm.nearShelf = null;
+        }
     }
 
     public bool CheckIsPlaceOnShelf()
@@ -63,5 +78,23 @@ public class ShelfController : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public bool RemoveItemFromShelf()
+    {
+        List<Transform> childs = new List<Transform>();
+        foreach (Transform child in itemsPanel.transform)
+        {
+            childs.Add(child);
+        }
+        foreach(Transform child in childs.AsEnumerable().Reverse())
+        {
+            if (child.GetComponent<Image>().enabled)
+            {
+                child.GetComponent<Image>().enabled = false;
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -9,6 +9,10 @@ TagManager:
   - Fish
   - Fruit
   - Shelf
+  - Customer
+  - PlaceOfPickUp
+  - ShelfPlaceOfPickUp
+  - Exit
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - CustomerLayer
   - 
   - 
   - 
