@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 1404113412422753555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.40196523, y: 0.40196523, z: 0.40196523}
   m_Children:
   - {fileID: 1404113412627301147}
   m_Father: {fileID: 1404113412782078590}
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1.12, y: -0.56}
+  m_AnchoredPosition: {x: 0.71, y: -0.38}
   m_SizeDelta: {x: 1.12, y: 1.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1404113412422753552
@@ -175,7 +175,7 @@ RectTransform:
   m_GameObject: {fileID: 1404113412782078591}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.154}
-  m_LocalScale: {x: 0.857272, y: 0.37500936, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1404113412422753554}
   - {fileID: 1404113413344055500}
@@ -184,8 +184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.03, y: 0.105}
-  m_SizeDelta: {x: 1.904, y: 4.382}
+  m_AnchoredPosition: {x: 0.01, y: -0.02}
+  m_SizeDelta: {x: 1.428, y: 1.568}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1404113412782078587
 Canvas:
@@ -283,8 +283,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.608}
-  m_SizeDelta: {x: 0, y: -1.217}
+  m_AnchoredPosition: {x: -0.01, y: -0.3374}
+  m_SizeDelta: {x: 0, y: -0.7722}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1404113413344055496
 CanvasRenderer:
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 1, y: 1}
-  m_Spacing: {x: 0.1, y: 0.1}
+  m_Spacing: {x: -1.46, y: -1.08}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1404113413344055499
@@ -385,7 +385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404113413854618122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.013999946, y: -0.009700039, z: -0.154}
+  m_LocalPosition: {x: 0.01000002, y: 0.01000008, z: -0.154}
   m_LocalScale: {x: 0.6956096, y: 0.6963144, z: 0.6956096}
   m_Children: []
   m_Father: {fileID: 1404113414208080671}
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 1404113414208080668}
   - component: {fileID: 1404113414208080669}
   m_Layer: 0
-  m_Name: Shelf (6)
+  m_Name: FishShelf
   m_TagString: Shelf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,8 +495,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404113414208080657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.609, y: 4.837, z: 0}
-  m_LocalScale: {x: 2.048761, y: 2.3266325, z: 1.4400883}
+  m_LocalPosition: {x: -1.09, y: 6.18, z: 0}
+  m_LocalScale: {x: 2.488, y: 2.488, z: 2.488}
   m_Children:
   - {fileID: 1404113412782078590}
   - {fileID: 1404113413854618121}
@@ -645,7 +645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2849829886640901848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06699995, y: 0.114499964, z: -1.415}
+  m_LocalPosition: {x: 0.01000002, y: -0.009999931, z: -1.415}
   m_LocalScale: {x: 1.1881379, y: 1.1892295, z: 1.9045851}
   m_Children: []
   m_Father: {fileID: 1404113414208080671}
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.07666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &4270910672313673593
@@ -765,7 +765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4270910672313673593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02299995, y: -0.72760004, z: -0.154}
+  m_LocalPosition: {x: -0.039999977, y: -0.93999994, z: -0.154}
   m_LocalScale: {x: 0.874, y: 0.8744, z: 0.874}
   m_Children: []
   m_Father: {fileID: 1404113414208080671}

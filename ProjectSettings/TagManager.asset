@@ -13,6 +13,7 @@ TagManager:
   - PlaceOfPickUp
   - ShelfPlaceOfPickUp
   - Exit
+  - Cash
   layers:
   - Default
   - TransparentFX

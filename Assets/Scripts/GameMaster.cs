@@ -13,7 +13,8 @@ public class GameMaster : MonoBehaviour
     public int currentCustomersNumber = 0;
     [System.NonSerialized]
     public bool playerLoses = false;
-    
+    public GameObject cashGameObject;
+
     public enum keysEnum
     {
         KeyUp = KeyCode.W,

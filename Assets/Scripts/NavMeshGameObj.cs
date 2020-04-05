@@ -20,6 +20,8 @@ public class NavMeshGameObj : MonoBehaviour
     public Transform exitLocation;
     int randListElement = 0;
     PlaceOfPickUpInfo placeTemp;
+    [System.NonSerialized]
+    public bool goHome;
 
 
 
@@ -38,9 +40,19 @@ public class NavMeshGameObj : MonoBehaviour
     private void SetNextDirection()
     {
         Vector3 nextDest;
-        if(customerState == (int)GameMaster.customerState.HasNotFoundProduct || customerState == (int)GameMaster.customerState.HasFoundProduct)
+        if(customerState == (int)GameMaster.customerState.HasNotFoundProduct)
         {
             whereToGo = exitLocation.position;
+        }else if (customerState == (int)GameMaster.customerState.HasFoundProduct)
+        {
+            if (goHome)
+            {
+                whereToGo = exitLocation.position;
+            }
+            else
+            {
+                whereToGo = gm.cashGameObject.transform.position;
+            }  
         }
         else
         {
@@ -104,21 +116,25 @@ public class NavMeshGameObj : MonoBehaviour
     }
     IEnumerator WaitForStuff()
     {
-        navMeshAgent.isStopped = true;
-        if (customerController.GetItemFromShelf())
+
+        if (customerState == (int)GameMaster.customerState.Shopping)
         {
-            customerState = (int)GameMaster.customerState.HasFoundProduct;
-        }
-        else
-        {
-            triesLeft--;
-            if(triesLeft <= 0)
+            navMeshAgent.isStopped = true;
+            if (customerController.GetItemFromShelf())
             {
-                customerState = (int)GameMaster.customerState.HasNotFoundProduct;
+                customerState = (int)GameMaster.customerState.HasFoundProduct;
             }
+            else
+            {
+                triesLeft--;
+                if(triesLeft <= 0)
+                {
+                    customerState = (int)GameMaster.customerState.HasNotFoundProduct;
+                }
+            }
+            yield return new WaitForSeconds(4f);
+            navMeshAgent.isStopped = false;
         }
-        yield return new WaitForSeconds(4f);
-        navMeshAgent.isStopped = false;
         SetNextDirection();
     }
 }
