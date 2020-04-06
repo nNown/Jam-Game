@@ -5637,6 +5637,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 24.17
       objectReference: {fileID: 0}
+    - target: {fileID: 3741318951348469026, guid: 685bc16b918158e4a8fe1b583ea46abc,
+        type: 3}
+      propertyPath: m_Text
+      value: Punkty
+      objectReference: {fileID: 0}
     - target: {fileID: 3741318951348469037, guid: 685bc16b918158e4a8fe1b583ea46abc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -13263,7 +13268,7 @@ PrefabInstance:
     - target: {fileID: 6822794459443541337, guid: 654e46bb3ffee7a44b1808b8ea31394b,
         type: 3}
       propertyPath: m_Text
-      value: Milk
+      value: Mleko
       objectReference: {fileID: 0}
     - target: {fileID: 6822794459970322853, guid: 654e46bb3ffee7a44b1808b8ea31394b,
         type: 3}
@@ -13385,6 +13390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarehouseGui
       objectReference: {fileID: 0}
+    - target: {fileID: 6822794460488782706, guid: 654e46bb3ffee7a44b1808b8ea31394b,
+        type: 3}
+      propertyPath: m_Text
+      value: Papier
+      objectReference: {fileID: 0}
     - target: {fileID: 6822794460491495713, guid: 654e46bb3ffee7a44b1808b8ea31394b,
         type: 3}
       propertyPath: inventory
@@ -13395,6 +13405,11 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1142822314}
+    - target: {fileID: 6822794461135257489, guid: 654e46bb3ffee7a44b1808b8ea31394b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Jab\u0142ko"
+      objectReference: {fileID: 0}
     - target: {fileID: 6822794461208356558, guid: 654e46bb3ffee7a44b1808b8ea31394b,
         type: 3}
       propertyPath: inventory
