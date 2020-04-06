@@ -58,7 +58,8 @@ public class NavMeshGameObj : MonoBehaviour
         {
             while (true)
             {
-                randomTag = productsTagsList[random.Next(productsTagsList.Count())];
+               // randomTag = productsTagsList[random.Next(productsTagsList.Count())];
+                randomTag = "Fruit";
                 randListElement = random.Next(PlaceOfPickUpDict[randomTag].Count);
                 nextDest = PlaceOfPickUpDict[randomTag][randListElement].transform.position;
                 if (nextDest != whereToGo)
@@ -119,16 +120,20 @@ public class NavMeshGameObj : MonoBehaviour
 
         if (customerState == (int)GameMaster.customerState.Shopping)
         {
+            bool taken = false;
             navMeshAgent.isStopped = true;
-            TryTakeItemOrGoHome();
+            taken = TryTakeItemOrGoHome();
             yield return new WaitForSeconds(4f);
-            TryTakeItemOrGoHome();
+            if (!taken)
+            {
+                TryTakeItemOrGoHome();
+            }
             navMeshAgent.isStopped = false;
         }
         SetNextDirection();
     }
 
-    private void TryTakeItemOrGoHome()
+    private bool TryTakeItemOrGoHome()
     {
         if (customerController.GetItemFromShelf())
         {
@@ -136,6 +141,7 @@ public class NavMeshGameObj : MonoBehaviour
             gm.playerController.AddScore(100);
             goHome = true;
             GetComponent<AudioSource>().Play();
+            return true;
         }
         else
         {
@@ -145,6 +151,7 @@ public class NavMeshGameObj : MonoBehaviour
                 customerState = (int)GameMaster.customerState.HasNotFoundProduct;
                 gm.playerController.DepleteHp(1);
             }
+            return false;
         }
     }
 }
