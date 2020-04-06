@@ -62,13 +62,14 @@ public class PlayerController : MonoBehaviour
         Vector2 moveInput = new Vector2();
         if (gm.playerLoses)
         {
-            //if (Input.GetKeyDown((KeyCode)GameMaster.keysEnum.KeyAction))
-            //{
-            //    Time.timeScale = 1;
-            //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            //   // gm.ResetGameMasterValues();
-            //}
-        }else if (!gm.playerIsBusy)
+            if (Input.GetKeyDown((KeyCode)GameMaster.keysEnum.KeyAction))
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                gm.RestartObject();
+            }
+        }
+        else if (!gm.playerIsBusy)
         {
             if (!Input.GetKey((KeyCode)GameMaster.keysEnum.KeyUp) && !Input.GetKey((KeyCode)GameMaster.keysEnum.KeyDown) && !Input.GetKey((KeyCode)GameMaster.keysEnum.KeyLeft) && !Input.GetKey((KeyCode)GameMaster.keysEnum.KeyRight))
             {
