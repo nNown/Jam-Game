@@ -58,8 +58,7 @@ public class NavMeshGameObj : MonoBehaviour
         {
             while (true)
             {
-                //randomTag = productsTagsList[random.Next(productsTagsList.Count())];
-                randomTag = "Fruit";
+                randomTag = productsTagsList[random.Next(productsTagsList.Count())];
                 randListElement = random.Next(PlaceOfPickUpDict[randomTag].Count);
                 nextDest = PlaceOfPickUpDict[randomTag][randListElement].transform.position;
                 if (nextDest != whereToGo)
@@ -121,21 +120,31 @@ public class NavMeshGameObj : MonoBehaviour
         if (customerState == (int)GameMaster.customerState.Shopping)
         {
             navMeshAgent.isStopped = true;
-            if (customerController.GetItemFromShelf())
-            {
-                customerState = (int)GameMaster.customerState.HasFoundProduct;
-            }
-            else
-            {
-                triesLeft--;
-                if(triesLeft <= 0)
-                {
-                    customerState = (int)GameMaster.customerState.HasNotFoundProduct;
-                }
-            }
+            TryTakeItemOrGoHome();
             yield return new WaitForSeconds(4f);
+            TryTakeItemOrGoHome();
             navMeshAgent.isStopped = false;
         }
         SetNextDirection();
+    }
+
+    private void TryTakeItemOrGoHome()
+    {
+        if (customerController.GetItemFromShelf())
+        {
+            customerState = (int)GameMaster.customerState.HasFoundProduct;
+            gm.playerController.AddScore(100);
+            goHome = true;
+            GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            triesLeft--;
+            if (triesLeft <= 0)
+            {
+                customerState = (int)GameMaster.customerState.HasNotFoundProduct;
+                gm.playerController.DepleteHp(1);
+            }
+        }
     }
 }

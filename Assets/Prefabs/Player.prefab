@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80947c7ecbf017449aaef5aa8015194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
   warhouseGui: {fileID: 0}
   floatingTextHelper: {fileID: 5821544894426006772}
   maxHp: 3

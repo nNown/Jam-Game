@@ -40,13 +40,6 @@ public class CustomerController : MonoBehaviour
         {
             Destroy(gameObject.transform.parent.gameObject);
         }
-        else if (collision.CompareTag("Cash"))
-        {
-            gm.playerController.AddScore(100);
-            navMeshGameObj.goHome = true;
-            GetComponent<AudioSource>().Play();
-
-        }
 
 
     }
@@ -63,10 +56,6 @@ public class CustomerController : MonoBehaviour
     private void OnDestroy()
     {
         gm.currentCustomersNumber--;
-        if (navMeshGameObj.customerState == (int)GameMaster.customerState.HasNotFoundProduct)
-        {
-            gm.playerController.DepleteHp(1);
-        }
     }
 
     public bool GetItemFromShelf()
