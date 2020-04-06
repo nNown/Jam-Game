@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,12 +20,13 @@ public class PlayerController : MonoBehaviour
     ShelfController nearPlayerShelfController;
     List<IInventoryItem> inventoryItemToDelete = new List<IInventoryItem>();
     [System.NonSerialized]
-    public int currentHp;
+    public int currentHp = 3;
     public int maxHp;
     public event EventHandler<PlayerEventArgs> HpDeplete;
     public event EventHandler<PlayerEventArgs> ScoreAdd;
     public Text textHp;
     public Text textScore;
+    
 
     [System.NonSerialized]
     public int score = 0;
@@ -58,7 +60,15 @@ public class PlayerController : MonoBehaviour
     private void PlayerKeysControl()
     {
         Vector2 moveInput = new Vector2();
-        if (!gm.playerIsBusy)
+        if (gm.playerLoses)
+        {
+            //if (Input.GetKeyDown((KeyCode)GameMaster.keysEnum.KeyAction))
+            //{
+            //    Time.timeScale = 1;
+            //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //   // gm.ResetGameMasterValues();
+            //}
+        }else if (!gm.playerIsBusy)
         {
             if (!Input.GetKey((KeyCode)GameMaster.keysEnum.KeyUp) && !Input.GetKey((KeyCode)GameMaster.keysEnum.KeyDown) && !Input.GetKey((KeyCode)GameMaster.keysEnum.KeyLeft) && !Input.GetKey((KeyCode)GameMaster.keysEnum.KeyRight))
             {
@@ -69,8 +79,6 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("Idle", false);
             }
 
-            if (!gm.playerIsBusy)
-            {
                 if (Input.GetKey((KeyCode)GameMaster.keysEnum.KeyUp))
                 {
                     moveInput = Vector2.up;
@@ -92,7 +100,10 @@ public class PlayerController : MonoBehaviour
                     anim.SetInteger("Speed", 4);
                 }
 
-                if (Input.GetKeyDown((KeyCode)GameMaster.keysEnum.KeyAction) && gm.nearShelf != null)
+                if (Input.GetKeyDown((KeyCode)GameMaster.keysEnum.KeyAction))
+                {
+
+                if (gm.nearShelf != null)
                 {
                     nearPlayerShelfController = gm.nearShelf.GetComponent<ShelfController>();
                     if (nearPlayerShelfController.CheckIsPlaceOnShelf())
@@ -112,17 +123,28 @@ public class PlayerController : MonoBehaviour
                             inventoryItemToDelete.Clear();
                         }
                     }
+                    }else if (gm.warehouseNerby)
+                    {
+                        warhouseGui.SetActive(true);
+                        warhouseGui.transform.Find("Buttons").GetChild(0).GetComponent<Button>().Select();
+                        warhouseGui.transform.Find("Buttons").GetChild(0).GetComponent<Button>().OnSelect(null);
+                        gm.playerIsBusy = true;
 
+                    }
                 }
 
                 moveVelocity = moveInput.normalized * speed;
-            }
-            else
+
+            }else
             {
-                if (Input.GetKeyDown((KeyCode)GameMaster.keysEnum.KeyRemoveItem))
+                if (Input.GetKeyDown((KeyCode) GameMaster.keysEnum.KeyRemoveItem))
                 {
                     inventory.RemoveLastItem();
-                }
+                }else if (Input.GetKeyDown((KeyCode)GameMaster.keysEnum.ExitWarehouse))
+                {
+                warhouseGui.SetActive(false);
+                gm.playerIsBusy = false;
+                gm.warehouseNerby = false;
             }
         }
        
@@ -141,11 +163,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Warehouse"))
         {
-            warhouseGui.SetActive(true);
-            warhouseGui.transform.Find("Buttons").GetChild(0).GetComponent<Button>().Select();
-            warhouseGui.transform.Find("Buttons").GetChild(0).GetComponent<Button>().OnSelect(null);
-            gm.playerIsBusy = true;
-
+            gm.warehouseNerby = true;
         }
 
         if (collision.gameObject.CompareTag("Shelf"))
@@ -155,11 +173,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Warehouse"))
-        {
-            warhouseGui.SetActive(false);
-            gm.playerIsBusy = false;
-        }
 
         if (collision.gameObject.CompareTag("Shelf"))
         {
@@ -185,8 +198,16 @@ public class PlayerController : MonoBehaviour
 
         if (currentHp <= 0)
         {
-            gm.playerLoses = true;
+            GameEnd();
         }
+    }
+
+    public void GameEnd()
+    {
+        gm.playerLoses = true;
+        gm.EndScreen.SetActive(true);
+        gm.EndScore.text = score.ToString();
+        Time.timeScale = 0f;
     }
 
     public void AddScore(int amount)
