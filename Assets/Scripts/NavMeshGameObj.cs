@@ -58,8 +58,7 @@ public class NavMeshGameObj : MonoBehaviour
         {
             while (true)
             {
-               // randomTag = productsTagsList[random.Next(productsTagsList.Count())];
-                randomTag = "Fruit";
+                randomTag = productsTagsList[random.Next(productsTagsList.Count())];
                 randListElement = random.Next(PlaceOfPickUpDict[randomTag].Count);
                 nextDest = PlaceOfPickUpDict[randomTag][randListElement].transform.position;
                 if (nextDest != whereToGo)
